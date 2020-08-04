@@ -1,7 +1,7 @@
 <template>
     <details>
         <summary>
-            <div class="order">{{ transactionData.type | operationName }}: <b>{{ transactionData.event_id }}</b></div>
+            <div class="order">{{ getOperationTypeName(transactionData.type) }}: <b>{{ transactionData.event_id }}</b></div>
             <div class="time"><time :datetime="transactionData.created_at">{{ transactionData.created_at }}</time></div>
             <div class="account">
                 {{ transactionData.account_number }}
@@ -18,8 +18,8 @@
     props: {
       transactionData: Object
     },
-    filters: {
-      operationName: type => {
+    methods: {
+      getOperationTypeName(type) {
         return type == "PURCHASE" ? "Заказ" :
                type == "PURCHASE_BILL" ? "Счет" :
                type == "REFUND" ? "Возврат" :
