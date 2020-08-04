@@ -23,7 +23,7 @@
         return type == "PURCHASE" ? "Заказ" :
                type == "PURCHASE_BILL" ? "Счет" :
                type == "REFUND" ? "Возврат" :
-               ""
+               "Неизвестная операция"
       }
     },
   }

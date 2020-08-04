@@ -126,6 +126,7 @@ export default {
         display: flex;
         position: relative;
         flex-direction: column-reverse;
+        justify-content: center;
     }
     @media (min-width: 64em) {
         #app {

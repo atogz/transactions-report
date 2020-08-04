@@ -54,12 +54,11 @@
               transactions: groups[date]
             };
           });
-
-          console.log(this.transactions);
           this.loading = false;
         })
         .catch(error => {
           console.log(error);
+          this.loading = false;
         })
     }
   }
