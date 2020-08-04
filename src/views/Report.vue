@@ -4,11 +4,15 @@
             <Loader/>
         </div>
         <div v-if="!loading && transactions.length">
-            <ul>
-                <li v-for="(transaction, index) in transactions" :key="index">
-                    <Transaction :transactionData="transaction"/>
-                </li>
-            </ul>
+            <div v-for="(day, index) in transactions" :key="index">
+                <div> {{ day.date }}</div>
+                    <ul>
+                        <li v-for="(transaction, index) in day.transactions" :key="index">
+                            <Transaction :transactionData="transaction"/>
+                        </li>
+                    </ul>
+            </div>
+
         </div>
         <div v-else-if="!loading && !transactions.length">
             No transactions found.
@@ -35,8 +39,23 @@
     mounted() {
       return this.$api.get('/transactions/page/1')
         .then(response => {
-          console.log(response);
-          this.transactions = response.data.result;
+          const groups = response.data.result.reduce((groups, transaction) => {
+            const date = transaction.created_at.split('T')[0];
+            if (!groups[date]) {
+              groups[date] = [];
+            }
+            groups[date].push(transaction);
+            return groups;
+          }, {});
+
+          this.transactions = Object.keys(groups).map((date) => {
+            return {
+              date,
+              transactions: groups[date]
+            };
+          });
+
+          console.log(this.transactions);
           this.loading = false;
         })
         .catch(error => {

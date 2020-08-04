@@ -26,9 +26,6 @@
                ""
       }
     },
-    mounted() {
-      console.log(this.transactionData);
-    }
   }
 </script>
 
