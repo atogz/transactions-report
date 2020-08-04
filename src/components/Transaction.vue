@@ -1,7 +1,7 @@
 <template>
     <details>
         <summary>
-            <div class="order">{{ getOperationTypeName(transactionData.type) }}: <b>{{ transactionData.event_id }}</b></div>
+            <div class="order">{{ changeOperationTypeName(transactionData.type) }}: <b>{{ transactionData.event_id }}</b></div>
             <div class="time"><time :datetime="transactionData.created_at">{{ transactionData.created_at }}</time></div>
             <div class="account">
                 {{ transactionData.account_number }}
@@ -19,7 +19,7 @@
       transactionData: Object
     },
     methods: {
-      getOperationTypeName(type) {
+      changeOperationTypeName(type) {
         return type == "PURCHASE" ? "Заказ" :
                type == "PURCHASE_BILL" ? "Счет" :
                type == "REFUND" ? "Возврат" :
