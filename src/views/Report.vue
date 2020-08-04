@@ -1,12 +1,14 @@
 <template>
-    <main>
+    <main id="report">
         <div v-if="loading">
             <Loader/>
         </div>
         <div v-if="!loading && transactions.length">
-            <div v-for="(transaction, index) in transactions" :key="index">
-                {{ transaction.created_at }}
-            </div>
+            <ul>
+                <li v-for="(transaction, index) in transactions" :key="index">
+                    <Transaction :transactionData="transaction"/>
+                </li>
+            </ul>
         </div>
         <div v-else-if="!loading && !transactions.length">
             No transactions found.
@@ -17,9 +19,13 @@
 
 <script>
   import Loader from "../components/Loader";
+  import Transaction from "../components/Transaction";
   export default {
-    name: "Transactions",
-    components: {Loader},
+    name: "Report",
+    components: {
+      Loader,
+      Transaction
+    },
     data() {
       return {
         loading: true,
@@ -41,5 +47,4 @@
 </script>
 
 <style scoped>
-
 </style>
