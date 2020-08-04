@@ -64,5 +64,13 @@
   }
 </script>
 
-<style scoped>
+<style>
+    #report {
+        margin: 40px 0;
+    }
+    #report div > div {
+        padding: 0 10px;
+        text-align: left;
+        color: #848497;
+    }
 </style>
