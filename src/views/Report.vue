@@ -42,7 +42,7 @@
         let yesterday = this.$moment().subtract(1, 'day').format('DD.MM.YY');
         return today === this.$moment(date).format('DD.MM.YY') ? "Сегодня" :
                yesterday === this.$moment(date).format('DD.MM.YY') ? "Вчера" :
-               date;
+               this.$moment(date).format('DD.MM.YY')
       },
     },
     mounted() {
