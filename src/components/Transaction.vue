@@ -6,7 +6,7 @@
             <div class="account">
                 {{ transactionData.account_number }}
             </div>
-            <div class="amount rubles positive">{{ transactionData.amount }}</div>
+            <div class="amount rubles positive" :class="{'negative': transactionData.type == 'REFUND'}">{{ transactionData.amount }}</div>
         </summary>
         <p class="description">{{ transactionData.description ? transactionData.description : "Нет описания операции" }}</p>
     </details>
@@ -84,10 +84,10 @@
         color: #FFF;
     }
     #report ul li .amount.negative {
-        color: #D87822;
+        color: #D87822 !important;
     }
     #report ul li .amount.negative:before {
-        content: "- ";
+        content: "- " !important;
     }
     #report ul li .amount.positive {
         color: #39b27c;
