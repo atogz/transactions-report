@@ -5,7 +5,7 @@
         </div>
         <div v-if="!loading && transactions.length">
             <div v-for="(day, index) in transactions" :key="index">
-                <div> {{ day.date }}</div>
+                <div> {{ day.date | moment("DD.MM.YY") }}</div>
                     <ul>
                         <li v-for="(transaction, index) in day.transactions" :key="index">
                             <Transaction :transactionData="transaction"/>
@@ -55,6 +55,10 @@
             };
           });
           this.loading = false;
+          this.transactions[0].date = '2020-08-06';
+          this.$moment.locale('ru');
+          console.log(this.$moment.locale())
+          console.log(this.transactions)
         })
         .catch(error => {
           console.log(error);

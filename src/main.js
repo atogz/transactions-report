@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import axios from 'axios'
-import moment from "moment";
+
 
 Vue.config.productionTip = false
-
-Vue.prototype.$moment = moment;
+Vue.use(require('vue-moment'));
 
 Vue.use({
   install (Vue) {
