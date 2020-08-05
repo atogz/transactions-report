@@ -3,20 +3,21 @@
         <div v-if="loading">
             <Loader/>
         </div>
-        <div v-if="!loading && transactions.length">
-            <div v-for="(day, index) in transactions" :key="index">
-                <div> {{ date(day.date) }}</div>
+        <transition name="component-fade" mode="out-in">
+            <div v-if="!loading && transactions.length">
+                <div v-for="(day, index) in transactions" :key="index">
+                    <div> {{ date(day.date) }}</div>
                     <ul>
                         <li v-for="(transaction, index) in day.transactions" :key="index">
                             <Transaction :transactionData="transaction"/>
                         </li>
                     </ul>
+                </div>
             </div>
-
-        </div>
-        <div v-else-if="!loading && !transactions.length">
-            No transactions found.
-        </div>
+            <div v-else-if="!loading && !transactions.length">
+                No transactions found.
+            </div>
+        </transition>
     </main>
 
 </template>
