@@ -5,7 +5,7 @@
         </div>
         <div v-if="!loading && transactions.length">
             <div v-for="(day, index) in transactions" :key="index">
-                <div> {{ day.date | moment("DD.MM.YY") }}</div>
+                <div> {{ date(day.date) }}</div>
                     <ul>
                         <li v-for="(transaction, index) in day.transactions" :key="index">
                             <Transaction :transactionData="transaction"/>
@@ -36,6 +36,15 @@
         transactions: [],
       }
     },
+    methods: {
+      date(date) {
+        let today = this.$moment().format('DD.MM.YY');
+        let yesterday = this.$moment().subtract(1, 'day').format('DD.MM.YY');
+        return today === this.$moment(date).format('DD.MM.YY') ? "Сегодня" :
+               yesterday === this.$moment(date).format('DD.MM.YY') ? "Вчера" :
+               date;
+      },
+    },
     mounted() {
       return this.$api.get('/transactions/page/1')
         .then(response => {
@@ -55,10 +64,9 @@
             };
           });
           this.loading = false;
-          this.transactions[0].date = '2020-08-06';
+          this.transactions[0].date = '2020-08-05';
+          this.transactions[1].date = '2020-08-04';
           this.$moment.locale('ru');
-          console.log(this.$moment.locale())
-          console.log(this.transactions)
         })
         .catch(error => {
           console.log(error);
