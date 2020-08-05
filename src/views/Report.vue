@@ -64,10 +64,10 @@
               transactions: groups[date]
             };
           });
-          this.loading = false;
+
           this.transactions[0].date = '2020-08-05';
           this.transactions[1].date = '2020-08-04';
-          this.$moment.locale('ru');
+         this.loading = false;
         })
         .catch(error => {
           console.log(error);
@@ -81,7 +81,7 @@
     #report {
         margin: 40px 0;
     }
-    #report div > div {
+    #report div > div:not .loader {
         padding: 0 10px;
         text-align: left;
         color: #848497;
