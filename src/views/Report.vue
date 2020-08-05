@@ -5,7 +5,7 @@
         </div>
         <transition name="component-fade" mode="out-in">
             <div v-if="!loading && transactions.length">
-                <div v-for="(day, index) in transactions" :key="index">
+                <div v-for="(day, index) in transactions" :key="index" class="transaction-item">
                     <div> {{ date(day.date) }}</div>
                     <ul>
                         <li v-for="(transaction, index) in day.transactions" :key="index">
@@ -67,7 +67,7 @@
 
           this.transactions[0].date = '2020-08-05';
           this.transactions[1].date = '2020-08-04';
-         this.loading = false;
+          this.loading = false;
         })
         .catch(error => {
           console.log(error);
@@ -81,9 +81,11 @@
     #report {
         margin: 40px 0;
     }
-    #report div > div:not .loader {
+
+    #report .transaction-item {
         padding: 0 10px;
         text-align: left;
         color: #848497;
     }
+
 </style>
