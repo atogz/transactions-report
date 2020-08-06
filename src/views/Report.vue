@@ -64,9 +64,6 @@
               transactions: groups[date]
             };
           });
-
-          this.transactions[0].date = '2020-08-05';
-          this.transactions[1].date = '2020-08-04';
           this.loading = false;
         })
         .catch(error => {
