@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+      <meta charset="utf-8">
       <Report />
   </div>
 </template>
@@ -15,7 +16,6 @@ export default {
 </script>
 
 <style>
-    @charset "UTF-8";
 
     html {
         line-height: 1.46;
