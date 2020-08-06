@@ -1,4 +1,4 @@
-# payterra-test
+# Transactions-report
 
 ## Project setup
 ```
